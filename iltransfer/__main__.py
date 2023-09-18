@@ -46,6 +46,8 @@ from tqdm import tqdm
 from .consts import *
 from .logs import logger
 
+
+parser = None
 if DEBUG:
     from time import sleep
 
@@ -122,7 +124,7 @@ def get_parsed_args() -> argparse.Namespace:
         "--version",
         action="version",
         help="Show version number and exit.",
-        version=f"[argparse.prog]{FILE}[/] version [i]{VERSION}[/]",
+        version=f"[argparse.prog]{NAME}[/] version [i]{VERSION}[/]",
     )
 
     return parser.parse_args()
@@ -209,9 +211,6 @@ def main() -> int:
     args = get_parsed_args()
 
     logger.info("Start of session")
-
-    print("config path:", CONFIG_PATH)
-    sys.exit(EXIT_SUCCESS)
 
     # TODO: Use user_config_dir to store the source and destination paths in a config file
     # TODO: Add option to specify source and destination paths

@@ -1,9 +1,9 @@
 """Logging configuration."""
 import logging
 
-from .consts import LOG_FILE, FILE, DEBUG
+from .consts import LOG_FILE, NAME, DEBUG
 
-logger = logging.getLogger(FILE)
+logger = logging.getLogger(NAME)
 
 handlers = [logging.FileHandler(LOG_FILE)]
 level = logging.INFO
