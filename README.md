@@ -45,13 +45,14 @@
 <details>
 <summary>Table of Contents</summary>
 
--   [Requirements](#requirements)
--   [Installation](#installation)
-    -   [Manual installation](#manual-installation)
--   [Execution](#execution)
--   [Contributors](#contributors)
-    -   [How do I contribute to iltransfer?](#how-do-i-contribute-to-iltransfer)
--   [TODO](#TODO)
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [Manual installation](#manual-installation)
+- [Execution](#execution)
+    - [Example of execution](#example-of-execution)
+- [Contributors](#contributors)
+  - [How do I contribute to iltransfer?](#how-do-i-contribute-to-iltransfer)
+- [TODO](#todo)
 
 </details>
 
@@ -130,7 +131,8 @@ where `[OPTIONS]` are the command line options described below:
 ```
 ```
 
-#### Example of execution:
+#### Example of execution
+
 
 
 
