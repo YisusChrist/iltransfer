@@ -17,11 +17,6 @@
     <a href="https://opensource.org/license/gpl-3-0/">
         <img alt="License" src="https://img.shields.io/github/license/yisuschrist/iltransfer?color=0088ff">
     </a>
-    <!--
-    <a href="https://github.com/yisuschrist/iltransfer/issues/contributors">
-        <img alt="GitHub Contributors" src="https://img.shields.io/github/contributors/yisuschrist/iltransfer" />
-    </a>
-    -->
 </p>
 
 <br>
@@ -42,6 +37,15 @@
 
 <br>
 
+Iltransfer (InstaLoader transfer) is a versatile Python application that streamlines the management of Instagram profile downloads using the [Instaloader](https://github.com/instaloader/instaloader) tool. With this program, you can effortlessly:
+
+- Transfer downloaded profiles to another destination when they are ready
+- Filter and move only the completed profiles, leaving incomplete downloads untouched.
+
+Iltansfer is compatible with Windows, Linux and macOS, and it works seamlessly with Python 3.6 and above. Simplify your Instagram profile management with Iltransfer today!
+
+<br>
+
 <details>
 <summary>Table of Contents</summary>
 
@@ -52,6 +56,7 @@
     - [Example of execution](#example-of-execution)
 - [Contributors](#contributors)
   - [How do I contribute to iltransfer?](#how-do-i-contribute-to-iltransfer)
+- [License](#license)
 - [TODO](#todo)
 
 </details>
@@ -142,13 +147,17 @@ where `[OPTIONS]` are the command line options described below:
 
 ### How do I contribute to iltransfer?
 
-Before you participate in our delightful community, please read the [code of conduct](CODE_OF_CONDUCT.md).
+Before you participate in our delightful community, please read the [code of conduct](.github/CODE_OF_CONDUCT.md).
 
 I'm far from being an expert and suspect there are many ways to improve – if you have ideas on how to make the configuration easier to maintain (and faster), don't hesitate to fork and send pull requests!
 
 We also need people to test out pull requests. So take a look through [the open issues](https://github.com/yisuschrist/iltransfer/issues) and help where you can.
 
-See [Contributing](CONTRIBUTING.md) for more details.
+See [Contributing](.github/CONTRIBUTING.md) for more details.
+
+## License
+
+iltransfer is released under the [GPL-3.0 License](https://opensource.org/licenses/GPL-3.0).
 
 ## TODO
 
