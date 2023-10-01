@@ -1,16 +1,40 @@
+"""File processing functions."""
 import shutil
 from pathlib import Path
 
 from rich import print
 from tqdm import tqdm
 
-from .consts import *
+from .consts import DEBUG
 from .logs import logger
 
 if DEBUG:
     from time import sleep
 
     SLEEP_TIME = 0.5
+
+
+def find_and_move_folders(src_path: Path, dest_path: Path) -> None:
+    """
+    Recursively searches for folders in the source path and moves them to the
+    destination path.
+
+    Args:
+        src_path (Path): The source path to search for folders.
+        dest_path (Path): The destination path to move folders to.
+    """
+    logger.debug("Searching for folders in %s", src_path)
+
+    try:
+        file_list = list(src_path.iterdir())
+        length = len(file_list)
+        logger.info("Found %d files in %s", length, src_path)
+
+        for file in tqdm(iterable=file_list, total=length):
+            process_folder(file, dest_path)
+
+    except KeyboardInterrupt:
+        print("\nCaught KeyboardInterrupt, terminating workers")
 
 
 def process_folder(folder: Path, dest_path: Path) -> None:
@@ -29,47 +53,26 @@ def process_folder(folder: Path, dest_path: Path) -> None:
         folder (Path): The folder to process.
         dest_path (Path): The destination path to move folders to.
     """
-    logger.debug(f"Found file {folder}")
+    logger.debug("Processing folder %s", folder)
 
     if DEBUG:
         sleep(SLEEP_TIME)
 
     if not folder.is_dir():
-        logger.warning(f"File {folder} is not a directory. Skipping...")
+        logger.warning("File %s is not a directory. Skipping...", folder)
         return
 
     subfiles = list(folder.iterdir())
     if len(subfiles) == 1 and subfiles[0].name == "id":
-        logger.warning(f"Folder {folder} only contains id file. Skipping...")
+        logger.warning("Folder %s only contains id file. Skipping...", folder)
         return
 
     if not any(subfile.name == "id" for subfile in subfiles):
-        logger.warning(f"Folder {folder} doesn't contain an id file. Skipping...")
+        logger.warning("Folder %s doesn't contain an id file. Skipping...", folder)
         return
 
     try:
         shutil.move(folder, dest_path)
-        logger.info(f"Moved folder {folder} to {dest_path}")
-    except shutil.Error as e:
-        logger.error(e)
-
-
-def find_and_move_folders(src_path: Path, dest_path: Path) -> None:
-    """
-    Recursively searches for folders in the source path and moves them to the
-    destination path.
-
-    Args:
-        src_path (Path): The source path to search for folders.
-        dest_path (Path): The destination path to move folders to.
-    """
-    try:
-        file_list = list(src_path.iterdir())
-        length = len(file_list)
-        logger.info(f"Found {length} files in {src_path}")
-
-        for file in tqdm(iterable=file_list, total=length):
-            process_folder(file, dest_path)
-
-    except KeyboardInterrupt:
-        print("\nCaught KeyboardInterrupt, terminating workers")
+        logger.info("Moved folder %s to %s", folder, dest_path)
+    except shutil.Error as error:
+        logger.error(error)

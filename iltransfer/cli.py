@@ -1,24 +1,24 @@
 """Command-line interface for the project."""
-import argparse
 import sys
+from argparse import ArgumentParser, Namespace
 
 from rich import print
 from rich_argparse_plus import RichHelpFormatterPlus
 
-from .consts import *
+from .consts import DESC, EXIT_FAILURE, LOG_PATH, NAME, VERSION
 from .logs import logger
 
 
-def get_parsed_args() -> argparse.Namespace:
+def get_parsed_args() -> Namespace:
     """
     Parse and return command-line arguments.
 
     Returns:
-        The parsed arguments as an argparse.Namespace object.
+        The parsed arguments as an Namespace object.
     """
     RichHelpFormatterPlus.choose_theme("grey_area")
 
-    parser = argparse.ArgumentParser(
+    parser = ArgumentParser(
         description=DESC,  # Program description
         formatter_class=RichHelpFormatterPlus,  # Disable line wrapping
         allow_abbrev=False,  # Disable abbreviations
