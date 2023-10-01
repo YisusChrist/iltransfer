@@ -35,8 +35,8 @@ Example:
 import argparse
 import shutil
 import sys
-
 from pathlib import Path
+
 from rich import print
 from rich.traceback import install
 from rich_argparse_plus import RichHelpFormatterPlus
@@ -45,7 +45,6 @@ from tqdm import tqdm
 
 from .consts import *
 from .logs import logger
-
 
 parser = None
 if DEBUG:
@@ -94,6 +93,27 @@ def get_parsed_args() -> argparse.Namespace:
         formatter_class=RichHelpFormatterPlus,  # Disable line wrapping
         allow_abbrev=False,  # Disable abbreviations
         add_help=False,  # Disable default help
+    )
+
+    g_main = parser.add_argument_group("Main Options")
+    # Source path argument
+    g_main.add_argument(
+        "-s",
+        "--source",
+        dest="source_path",
+        type=str,
+        default="D:\\3D Objects\\instagram",  # Default source path
+        help="Specify the source path for Instagram profiles.",
+    )
+
+    # Destination path argument
+    g_main.add_argument(
+        "-d",
+        "--destination",
+        dest="dest_path",
+        type=str,
+        default="D:\\3D Objects\\move",  # Default destination path
+        help="Specify the destination path for moving profiles.",
     )
 
     g_misc = parser.add_argument_group("Miscellaneous Options")
@@ -163,7 +183,7 @@ def process_folder(folder: Path, dest_path: Path) -> None:
     """
     logger.debug(f"Found file {folder}")
 
-    if DEBUG:        
+    if DEBUG:
         sleep(SLEEP_TIME)
 
     if not folder.is_dir():
@@ -213,10 +233,13 @@ def main() -> int:
     logger.info("Start of session")
 
     # TODO: Use user_config_dir to store the source and destination paths in a config file
-    # TODO: Add option to specify source and destination paths
 
-    src_path = Path("D:\\3D Objects\\instagram").resolve()
-    dest_path = Path("D:\\3D Objects\\move").resolve()
+    src_path = Path(args.source_path).resolve()
+    dest_path = Path(args.dest_path).resolve()
+
+    if not src_path.exists():
+        logger.error(f"Source path {src_path} does not exist")
+        exit_session(EXIT_FAILURE)
 
     find_and_move_folders(src_path, dest_path)
 
