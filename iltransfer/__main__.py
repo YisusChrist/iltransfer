@@ -31,10 +31,6 @@ def main() -> int:
     logger.info("Start of session")
 
     src_path, dest_path = configure_paths(args)
-    print(f"[yellow]Source path:[/] {src_path}")
-    print(f"[yellow]Destination path:[/] {dest_path}")
-    input("Press Enter to continue...")
-
     if not src_path.exists():
         logger.error("Source path %s does not exist", src_path)
         exit_session(EXIT_FAILURE)
