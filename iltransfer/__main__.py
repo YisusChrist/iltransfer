@@ -33,9 +33,11 @@ Example:
     $ python -m iltransfer
 """
 import argparse
+import configparser
 import shutil
 import sys
 from pathlib import Path
+from typing import Tuple
 
 from rich import print
 from rich.traceback import install
@@ -98,21 +100,19 @@ def get_parsed_args() -> argparse.Namespace:
     g_main = parser.add_argument_group("Main Options")
     # Source path argument
     g_main.add_argument(
-        "-s",
+        "-src",
         "--source",
         dest="source_path",
         type=str,
-        default="D:\\3D Objects\\instagram",  # Default source path
         help="Specify the source path for Instagram profiles.",
     )
 
     # Destination path argument
     g_main.add_argument(
-        "-d",
+        "-dst",
         "--destination",
         dest="dest_path",
         type=str,
-        default="D:\\3D Objects\\move",  # Default destination path
         help="Specify the destination path for moving profiles.",
     )
 
@@ -172,10 +172,78 @@ def exit_session(exit_value: int) -> None:
     sys.exit(exit_value)
 
 
+def create_config_file() -> None:
+    """
+    Create the configuration file.
+    """
+    logger.debug(f"Creating configuration file at {CONFIG_FILE}")
+
+    config = configparser.ConfigParser()
+
+    config.add_section("Paths")
+
+    DEFAULT_SRC_PATH = "D:\\3D Objects\\instagram"
+    DEFAULT_DEST_PATH = "D:\\3D Objects\\move"
+
+    src_path = input("Enter the source path (default: {}): ".format(DEFAULT_SRC_PATH))
+    dest_path = input(
+        "Enter the destination path (default: {}): ".format(DEFAULT_DEST_PATH)
+    )
+
+    config.set("Paths", "src_path", src_path or DEFAULT_SRC_PATH)
+    config.set("Paths", "dest_path", dest_path or DEFAULT_DEST_PATH)
+
+    with open(CONFIG_FILE, "w") as configfile:
+        config.write(configfile)
+
+
+def configure_paths(args: argparse.Namespace) -> Tuple[Path, Path]:
+    """
+    Get the source and destination path values from the configuration file or
+    the command-line arguments.
+
+    Args:
+        args (argparse.Namespace): The parsed command-line arguments.
+
+    Returns:
+        Tuple[Path, Path]: The source and destination path values.
+    """
+    logger.debug("Configuring paths")
+    if not CONFIG_FILE.is_file():
+        # Configuration file doesn't exist, prompt the user for values and create the file
+        # Warn the user that the configuration file doesn't exist
+        print(
+            "[yellow]Configuration file doesn't exist. "
+            f"Creating configuration file at {CONFIG_FILE}[/yellow]"
+        )
+        create_config_file()
+
+    config = configparser.ConfigParser()
+    config.read(CONFIG_FILE)
+
+    if args.source_path is None:
+        args.source_path = config.get("Paths", "src_path")
+
+    if args.dest_path is None:
+        args.dest_path = config.get("Paths", "dest_path")
+
+    src_path = Path(args.source_path).resolve()
+    dest_path = Path(args.dest_path).resolve()
+
+    return src_path, dest_path
+
+
 def process_folder(folder: Path, dest_path: Path) -> None:
     """
     Processes a folder, checks if it should be skipped, and moves it to the
     destination path if necessary.
+
+    The folder is skipped if it is not a directory or if it only contains an
+    id file. When you start downloading a profile, Instaloader creates a
+    folder with the profile name and an id file inside it. If the download of
+    the profile is interrupted while it is fetching the first files, the
+    folder will only contain the id file. This is why we check if the folder
+    only contains an id file, and if it does, we skip it.
 
     Args:
         folder (Path): The folder to process.
@@ -195,10 +263,13 @@ def process_folder(folder: Path, dest_path: Path) -> None:
         logger.warning(f"Folder {folder} only contains id file. Skipping...")
         return
 
-    dst_dir = dest_path
+    if not any(subfile.name == "id" for subfile in subfiles):
+        logger.warning(f"Folder {folder} doesn't contain an id file. Skipping...")
+        return
+
     try:
-        shutil.move(folder, dst_dir)
-        logger.info(f"Moved folder {folder} to {dst_dir}")
+        shutil.move(folder, dest_path)
+        logger.info(f"Moved folder {folder} to {dest_path}")
     except shutil.Error as e:
         logger.error(e)
 
@@ -232,11 +303,7 @@ def main() -> int:
 
     logger.info("Start of session")
 
-    # TODO: Use user_config_dir to store the source and destination paths in a config file
-
-    src_path = Path(args.source_path).resolve()
-    dest_path = Path(args.dest_path).resolve()
-
+    src_path, dest_path = configure_paths(args)
     if not src_path.exists():
         logger.error(f"Source path {src_path} does not exist")
         exit_session(EXIT_FAILURE)
