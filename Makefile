@@ -1,3 +1,4 @@
+# Adapted from https://github.com/Textualize/frogmouth/blob/main/Makefile
 ##############################################################################
 # Common make values.
 mkfile_path := $(abspath $(lastword $(MAKEFILE_LIST)))
@@ -11,8 +12,12 @@ isort       := $(run) isort
 bandit      := $(run) bandit
 monkey      := $(run) monkeytype
 pytest      := $(run) pytest
-doc	        := $(run) sphinx-build
 pyre        := $(run) pyre
+
+DOCDIR      := docs
+DOCSRC      := $(DOCDIR)/source
+BUILDDIR    := $(DOCDIR)/build/html
+SPHINXOPTS  :=
 
 
 ##############################################################################
@@ -54,10 +59,24 @@ black:				# Run black over the code
 
 .PHONY: isort
 isort:				# Run isort over the code
-	$(isort) --profile black $(package)
+	$(isort) $(package)
 
 .PHONY: reformat
 reformat: isort black		# Run all the formatting tools over the code
+
+##############################################################################
+# Documentation.
+doc:                # Build the documentation
+	sphinx-quickstart "$(DOCDIR)"
+
+apidoc:             # Build the API documentation
+	sphinx-apidoc -o "$(DOCSRC)" .
+
+html:               # Build the HTML documentation
+	sphinx-build "$(DOCSRC)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+
+livehtml:           # Run a live-updating HTML server for the documentation
+	sphinx-autobuild "$(DOCSRC)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
 
 ##############################################################################
 # Checking/testing/linting/etc.
@@ -69,16 +88,24 @@ lint:				# Run Pylint over the library
 typecheck:			# Perform static type checks with mypy
 	$(mypy) --scripts-are-modules $(package)
 
-.PHONY: bandit
-bandit:				# Run bandit over the code
-	$(bandit) -r $(package)
-
 .PHONY: stricttypecheck
 stricttypecheck:	# Perform strict static type checks with mypy
 	$(mypy) --scripts-are-modules --strict $(package)
 
+.PHONY: bandit
+bandit:				# Run bandit over the code
+	$(bandit) -r $(package)
+
+.PHONY: monkey
+monkey:				# Run monkeytype over the code
+	$(monkey) apply $(package)
+
+.PHONY: test
+test:				# Run the unit tests
+	$(pytest) tests
+
 .PHONY: checkall
-checkall: lint stricttypecheck # Check all the things
+checkall: lint stricttypecheck bandit # Check all the things
 
 ##############################################################################
 # Utility.
