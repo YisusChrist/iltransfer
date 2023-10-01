@@ -1,8 +1,9 @@
 """Constants for the project."""
 from pathlib import Path
+
 from platformdirs import user_config_dir, user_log_dir
 
-from . import __version__, __desc__, PACKAGE
+from . import PACKAGE, __desc__, __version__
 
 NAME = PACKAGE  # Path(__file__).name.split(".")[0]
 CONFIG_PATH = user_config_dir(appname=NAME, ensure_exists=True)

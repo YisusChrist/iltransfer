@@ -1,7 +1,7 @@
 """Logging configuration."""
 import logging
 
-from .consts import LOG_FILE, NAME, DEBUG
+from .consts import DEBUG, LOG_FILE, NAME
 
 logger = logging.getLogger(NAME)
 
