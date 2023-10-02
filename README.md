@@ -163,6 +163,6 @@ iltransfer is released under the [GPL-3.0 License](https://opensource.org/licens
 
 Planing to add the following features:
 
--   [ ] Add a support to use config files (multi-platform) to store the options
+-   [x] Add a support to use config files (multi-platform) to store the options
 -   [ ] Add a full documentation in Wiki section
 -   [ ] Add a Changelog / Release Notes
