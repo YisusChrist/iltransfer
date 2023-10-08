@@ -10,5 +10,4 @@ def test_get_parsed_args_with_no_args():
     assert isinstance(args, Namespace)
 
     # Add more assertions to check specific properties of the Namespace object
-
-
+    # TODO: Continue adding more tests
