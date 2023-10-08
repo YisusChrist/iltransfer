@@ -164,4 +164,4 @@ Planing to add the following features:
 
 -   [x] Add a support to use config files (multi-platform) to store the options
 -   [ ] Add a full documentation in Wiki section
--   [ ] Add a Changelog / Release Notes
+-   [x] Add a Changelog / Release Notes
