@@ -68,7 +68,6 @@ Here's a breakdown of the packages needed and their versions:
 -   [platformdirs](https://pypi.org/project/platformdirs) - 3.10.0
 -   [rich](https://pypi.org/project/rich) - 13.5.2
 -   [rich-argparse-plus](https://pypi.org/project/rich-argparse-plus) - 0.3.1.4
--   [string-grab](https://pypi.org/project/string-grab) - 1.3.0
 -   [tqdm](https://pypi.org/project/tqdm) - 4.66.1
 
 These packages can be installed using the following command:
