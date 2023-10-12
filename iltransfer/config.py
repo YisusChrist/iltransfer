@@ -29,8 +29,8 @@ def create_config_file() -> None:
     config.set("Paths", "src_path", src_path or default_src_path)
     config.set("Paths", "dest_path", dest_path or default_dest_path)
 
-    with open(CONFIG_FILE, "w", encoding="utf-8") as configfile:
-        config.write(configfile)
+    with open(CONFIG_FILE, "w", encoding="utf-8") as config_file:
+        config.write(config_file)
 
 
 def configure_paths(args: Namespace) -> Tuple[Path, Path]:
