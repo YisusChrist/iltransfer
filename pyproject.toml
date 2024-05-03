@@ -12,7 +12,7 @@ python = "^3.11"
 platformdirs = "3.10.0"
 rich = "13.5.2"
 rich-argparse-plus = "0.3.1.4"
-tqdm = "^4.66.1"
+tqdm = "^4.66.3"
 
 
 [tool.poetry.group.dev.dependencies]
