@@ -39,8 +39,8 @@
 
 Iltransfer (InstaLoader transfer) is a versatile Python application that streamlines the management of Instagram profile downloads using the [Instaloader](https://github.com/instaloader/instaloader) tool. With this program, you can effortlessly:
 
-- Transfer downloaded profiles to another destination when they are ready
-- Filter and move only the completed profiles, leaving incomplete downloads untouched.
+-   Transfer downloaded profiles to another destination when they are ready
+-   Filter and move only the completed profiles, leaving incomplete downloads untouched.
 
 Iltansfer is compatible with Windows, Linux and macOS, and it works seamlessly with Python 3.6 and above. Simplify your Instagram profile management with Iltransfer today!
 
@@ -49,15 +49,15 @@ Iltansfer is compatible with Windows, Linux and macOS, and it works seamlessly w
 <details>
 <summary>Table of Contents</summary>
 
-- [Requirements](#requirements)
-- [Installation](#installation)
-  - [Manual installation](#manual-installation)
-- [Execution](#execution)
-    - [Example of execution](#example-of-execution)
-- [Contributors](#contributors)
-  - [How do I contribute to iltransfer?](#how-do-i-contribute-to-iltransfer)
-- [License](#license)
-- [TODO](#todo)
+-   [Requirements](#requirements)
+-   [Installation](#installation)
+    -   [Manual installation](#manual-installation)
+-   [Execution](#execution)
+    -   [Example of execution](#example-of-execution)
+-   [Contributors](#contributors)
+    -   [How do I contribute to iltransfer?](#how-do-i-contribute-to-iltransfer)
+-   [License](#license)
+-   [TODO](#todo)
 
 </details>
 
@@ -74,7 +74,8 @@ These packages can be installed using the following command:
 
 This will install all the packages and their dependencies listed in the requirements.txt file. Make sure you have Python and pip installed on your system before running this command.
 
-> Note: The software has been developed and tested using Python 3.11.4. The minimum required version to run the software is Python 3.6. Although the software may work with previous versions, it is not guaranteed.
+> [!NOTE]
+> The software has been developed and tested using Python 3.11.4. The minimum required version to run the software is Python 3.6. Although the software may work with previous versions, it is not guaranteed.
 
 ## Installation
 
@@ -84,41 +85,39 @@ iltransfer can be installed easily as a Pypi package. Just run the following com
 pip3 install iltransfer
 ```
 
-
-
-> For best practices and to avoid potential conflicts with your global Python environment, it is strongly recommended to install this program within a virtual environment. Avoid using the --user option for global installations. We highly recommend using [pipx](https://pypi.org/project/pipx/) for a safe and isolated installation experience. Therefore, the appropriate command to install iltransfer would be:
+> [!IMPORTANT]
+> For best practices and to avoid potential conflicts with your global Python environment, it is strongly recommended to install this program within a virtual environment. Avoid using the --user option for global installations. We highly recommend using [pipx](https://pypi.org/project/pipx) for a safe and isolated installation experience. Therefore, the appropriate command to install `iltransfer` would be:
 >
 > ```bash
 > pipx install iltransfer
 > ```
->
-
 
 ### Manual installation
 
 If you prefer to install the program manually, follow these steps:
 
-> Note: This will install the version from the latest commit, not the latest release.
+> [!WARNING]
+> This will install the version from the latest commit, not the latest release.
 
 1. Download the latest version of [iltransfer](https://github.com/yisuschrist/iltransfer) from this repository:
 
-   ```bash
-   git clone https://github.com/yisuschrist/iltransfer
-   cd iltransfer
-   ```
+    ```bash
+    git clone https://github.com/yisuschrist/iltransfer
+    cd iltransfer
+    ```
 
 2. Install the dependencies:
 
-   ```bash
-   pip3 install -r requirements.txt
-   ```
+    ```bash
+    pip3 install -r requirements.txt
+    ```
 
 3. Run the following commands to install iltransfer in your `/usr/bin/` directory:
 
-   ```bash
-   sudo chmod +x iltransfer
-   sudo cp iltransfer /usr/bin/
-   ```
+    ```bash
+    sudo chmod +x iltransfer
+    sudo cp iltransfer /usr/bin/
+    ```
 
 The program can now be ran from a terminal with the `iltransfer` command.
 
@@ -133,12 +132,10 @@ iltransfer [OPTIONS]
 where `[OPTIONS]` are the command line options described below:
 
 ```
+
 ```
 
 #### Example of execution
-
-
-
 
 ## Contributors
 

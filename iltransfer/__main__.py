@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
 Main module of the iltransfer package.
@@ -22,10 +21,13 @@ from .file_processing import find_and_move_folders
 from .logs import logger
 
 
-def main() -> int:
+def main() -> None:
     """
     Main function
     """
+    # Enable rich error formatting in debug mode
+    install(show_locals=DEBUG)
+
     args = get_parsed_args()
 
     logger.info("Start of session")
@@ -41,8 +43,6 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    # Enable rich error formatting in debug mode
-    install(show_locals=DEBUG)
     if DEBUG:
         print("[yellow]Debug mode is enabled[/yellow]")
     if PROFILE:

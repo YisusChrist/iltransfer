@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "iltransfer"
-version = "1.1.0"
+version = "1.1.1"
 description = "Transfer your Instaloader downloads to another path"
 license = "GPL-3.0-only"
 authors = ["Alejandro González Momblán <agelrenorenardo@gmail.com>"]
@@ -14,16 +14,17 @@ rich = "13.5.2"
 rich-argparse-plus = "0.3.1.4"
 tqdm = "^4.66.1"
 
-
 [tool.poetry.group.dev.dependencies]
 mypy = "^1.5.1"
 pylint = "^2.17.7"
 sphinx = "^7.2.6"
 bandit = "^1.7.5"
-pdoc = "^14.1.0"
+pdoc = "^14.5.1"
 monkeytype = "^23.3.0"
 commitizen = "^3.10.0"
 
+[tool.poetry.scripts]
+iltransfer = "iltransfer.__main__:main"
 
 [tool.commitizen]
 name = "cz_conventional_commits"
@@ -40,7 +41,6 @@ disable = [
    "W0622",  # Redefining built-in 'format' (redefined-builtin)
    "C0103",  # Constant name doesn't conform to UPPER_CASE naming style (invalid-name)
 ]
-
 
 [build-system]
 requires = ["poetry-core"]
