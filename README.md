@@ -22,13 +22,13 @@
 <br>
 
 <p align="center">
-    <a href="https://github.com/yisuschrist/iltransfer/issues/new/choose">Report Bug</a>
+    <a href="https://github.com/YisusChrist/iltransfer/issues/new?assignees=YisusChrist&labels=bug&projects=&template=bug_report.yml">Report Bug</a>
     ·
-    <a href="https://github.com/yisuschrist/iltransfer/issues/new/choose">Request Feature</a>
+    <a href="https://github.com/YisusChrist/iltransfer/issues/new?assignees=YisusChrist&labels=feature&projects=&template=feature_request.yml">Request Feature</a>
     ·
-    <a href="https://github.com/yisuschrist/iltransfer/discussions">Ask Question</a>
+    <a href="https://github.com/YisusChrist/iltransfer/issues/new?assignees=YisusChrist&labels=question&projects=&template=question.yml">Ask Question</a>
     ·
-    <a href="https://github.com/yisuschrist/iltransfer/security/policy#reporting-a-vulnerability">Report security bug</a>
+    <a href="https://github.com/YisusChrist/iltransfer/security/policy#reporting-a-vulnerability">Report security bug</a>
 </p>
 
 <br>
@@ -37,27 +37,29 @@
 
 <br>
 
-Iltransfer (InstaLoader transfer) is a versatile Python application that streamlines the management of Instagram profile downloads using the [Instaloader](https://github.com/instaloader/instaloader) tool. With this program, you can effortlessly:
+`Iltransfer` (InstaLoader transfer) is a versatile Python application that streamlines the management of Instagram profile downloads using the [Instaloader](https://github.com/instaloader/instaloader) tool. With this program, you can effortlessly:
 
 -   Transfer downloaded profiles to another destination when they are ready
 -   Filter and move only the completed profiles, leaving incomplete downloads untouched.
 
-Iltansfer is compatible with Windows, Linux and macOS, and it works seamlessly with Python 3.6 and above. Simplify your Instagram profile management with Iltransfer today!
+`Iltransfer` is compatible with Windows, Linux and macOS, and it works seamlessly with Python 3.6 and above. Simplify your Instagram profile management with `Iltransfer` today!
 
 <br>
 
 <details>
 <summary>Table of Contents</summary>
 
--   [Requirements](#requirements)
--   [Installation](#installation)
-    -   [Manual installation](#manual-installation)
--   [Execution](#execution)
-    -   [Example of execution](#example-of-execution)
--   [Contributors](#contributors)
-    -   [How do I contribute to iltransfer?](#how-do-i-contribute-to-iltransfer)
--   [License](#license)
--   [TODO](#todo)
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [From PyPI](#from-pypi)
+  - [Manual installation](#manual-installation)
+  - [Uninstall](#uninstall)
+- [Usage](#usage)
+  - [Example of execution](#example-of-execution)
+- [Contributors](#contributors)
+  - [How do I contribute to iltransfer?](#how-do-i-contribute-to-iltransfer)
+- [License](#license)
+- [TODO](#todo)
 
 </details>
 
@@ -70,16 +72,14 @@ Here's a breakdown of the packages needed and their versions:
 -   [rich-argparse-plus](https://pypi.org/project/rich-argparse-plus) - 0.3.1.4
 -   [tqdm](https://pypi.org/project/tqdm) - 4.66.1
 
-These packages can be installed using the following command:
-
-This will install all the packages and their dependencies listed in the requirements.txt file. Make sure you have Python and pip installed on your system before running this command.
-
 > [!NOTE]
-> The software has been developed and tested using Python 3.11.4. The minimum required version to run the software is Python 3.6. Although the software may work with previous versions, it is not guaranteed.
+> The software has been developed and tested using Python `3.12.1`. The minimum required version to run the software is Python 3.6. Although the software may work with previous versions, it is not guaranteed.
 
 ## Installation
 
-iltransfer can be installed easily as a Pypi package. Just run the following command:
+### From PyPI
+
+`iltransfer` can be installed easily as a PypI package. Just run the following command:
 
 ```bash
 pip3 install iltransfer
@@ -92,6 +92,8 @@ pip3 install iltransfer
 > pipx install iltransfer
 > ```
 
+The program can now be ran from a terminal with the `iltransfer` command.
+
 ### Manual installation
 
 If you prefer to install the program manually, follow these steps:
@@ -102,26 +104,33 @@ If you prefer to install the program manually, follow these steps:
 1. Download the latest version of [iltransfer](https://github.com/yisuschrist/iltransfer) from this repository:
 
     ```bash
-    git clone https://github.com/yisuschrist/iltransfer
-    cd iltransfer
+    git clone https://github.com/YisusChrist/mal_organizer
+    cd mal_organizer
     ```
 
-2. Install the dependencies:
+2. Install the package:
 
     ```bash
-    pip3 install -r requirements.txt
+    poetry install --only-main
     ```
 
-3. Run the following commands to install iltransfer in your `/usr/bin/` directory:
+3. Run the program:
 
     ```bash
-    sudo chmod +x iltransfer
-    sudo cp iltransfer /usr/bin/
+    poetry run iltransfer
     ```
 
 The program can now be ran from a terminal with the `iltransfer` command.
 
-## Execution
+### Uninstall
+
+If you installed it from PyPI, you can use the following command:
+
+```bash
+pipx uninstall iltransfer
+```
+
+## Usage
 
 To run the `iltransfer` script, you can use the following command:
 
@@ -135,7 +144,7 @@ where `[OPTIONS]` are the command line options described below:
 
 ```
 
-#### Example of execution
+### Example of execution
 
 ## Contributors
 
@@ -153,7 +162,7 @@ See [Contributing](.github/CONTRIBUTING.md) for more details.
 
 ## License
 
-iltransfer is released under the [GPL-3.0 License](https://opensource.org/licenses/GPL-3.0).
+`iltransfer` is released under the [GPL-3.0 License](https://opensource.org/licenses/GPL-3.0).
 
 ## TODO
 
