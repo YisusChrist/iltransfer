@@ -1,4 +1,5 @@
 """Constants for the project."""
+
 from pathlib import Path
 
 from platformdirs import user_config_dir, user_log_dir
