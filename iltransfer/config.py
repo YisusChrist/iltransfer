@@ -1,4 +1,5 @@
 """Configuration module for the project."""
+
 import configparser
 from argparse import Namespace
 from pathlib import Path
