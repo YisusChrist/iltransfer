@@ -1,4 +1,5 @@
 """Command-line interface for the project."""
+
 import sys
 from argparse import ArgumentParser, Namespace
 
