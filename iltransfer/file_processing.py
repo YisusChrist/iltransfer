@@ -39,8 +39,8 @@ def find_and_move_folders(src_path: Path, dest_path: Path) -> None:
 
 
 def move_folder(src: str | Path, dest: str | Path):
-    src_path = Path(src)
-    dest_path = Path(dest) / src_path.name
+    src_path = Path(src).resolve()
+    dest_path = Path(dest).resolve() / src_path.name
 
     # Check if the destination folder exists
     if not dest_path.exists():
