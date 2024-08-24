@@ -34,7 +34,6 @@ def get_parsed_args() -> Namespace:
         type=str,
         help="Specify the source path for Instagram profiles.",
     )
-
     # Destination path argument
     g_main.add_argument(
         "-dst",
@@ -42,6 +41,23 @@ def get_parsed_args() -> Namespace:
         dest="dest_path",
         type=str,
         help="Specify the destination path for moving profiles.",
+    )
+    # Config file argument
+    g_main.add_argument(
+        "-c",
+        "--config",
+        dest="config_file",
+        type=str,
+        help="Specify a configuration file.",
+    )
+    # Create config file interactive
+    g_main.add_argument(
+        "-i",
+        "--interactive",
+        dest="interactive",
+        action="store_true",
+        default=False,
+        help="Create a configuration file interactively.",
     )
 
     g_misc = parser.add_argument_group("Miscellaneous Options")
@@ -92,8 +108,8 @@ def exit_session(exit_value: int) -> None:
 
     if exit_value == EXIT_FAILURE:
         print(
-            "[red]There were errors during the execution of the script. "
-            f"Check the logs at {LOG_PATH} for more information.[/red]"
+            "\n[red]There were errors during the execution of the script. "
+            f"Check the logs at '{LOG_PATH}' for more information.[/]"
         )
 
     # Exit the program with the given exit value
