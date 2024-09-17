@@ -9,9 +9,9 @@ repository = "https://github.com/yisuschrist/iltransfer"
 
 [tool.poetry.dependencies]
 python = "^3.11"
-platformdirs = "3.10.0"
-rich = "13.5.2"
-rich-argparse-plus = "0.3.1.4"
+platformdirs = ">=3.10.0"
+rich = "^13.5.2"
+rich-argparse-plus = "^0.3.1.4"
 tqdm = "^4.66.1"
 
 [tool.poetry.group.dev.dependencies]
