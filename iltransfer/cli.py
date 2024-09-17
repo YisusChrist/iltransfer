@@ -1,12 +1,12 @@
 """Command-line interface for the project."""
 
 import sys
-from argparse import ArgumentParser, Namespace
+from argparse import Namespace
 
+from core_helpers.cli import ArgparseColorThemes, setup_parser
 from rich import print
-from rich_argparse_plus import RichHelpFormatterPlus
 
-from .consts import DESC, EXIT_FAILURE, LOG_PATH, NAME, VERSION
+from .consts import DESC, EXIT_FAILURE, LOG_PATH, PACKAGE, VERSION
 from .logs import logger
 
 
@@ -17,16 +17,13 @@ def get_parsed_args() -> Namespace:
     Returns:
         The parsed arguments as an Namespace object.
     """
-    RichHelpFormatterPlus.choose_theme("grey_area")
-
-    parser = ArgumentParser(
-        description=DESC,  # Program description
-        formatter_class=RichHelpFormatterPlus,  # Disable line wrapping
-        allow_abbrev=False,  # Disable abbreviations
-        add_help=False,  # Disable default help
+    parser, g_main = setup_parser(
+        PACKAGE,
+        DESC,
+        VERSION,
+        ArgparseColorThemes.GREY_AREA,
     )
 
-    g_main = parser.add_argument_group("Main Options")
     # Source path argument
     g_main.add_argument(
         "-src",
@@ -59,37 +56,6 @@ def get_parsed_args() -> Namespace:
         action="store_true",
         default=False,
         help="Create a configuration file interactively.",
-    )
-
-    g_misc = parser.add_argument_group("Miscellaneous Options")
-    # Help
-    g_misc.add_argument(
-        "-h", "--help", action="help", help="Show this help message and exit."
-    )
-    # Verbose
-    g_misc.add_argument(
-        "-v",
-        "--verbose",
-        dest="verbose",
-        action="store_true",
-        default=False,
-        help="Show log messages on screen. Default is False.",
-    )
-    # Debug
-    g_misc.add_argument(
-        "-d",
-        "--debug",
-        dest="debug",
-        action="store_true",
-        default=False,
-        help="Activate debug logs. Default is False.",
-    )
-    g_misc.add_argument(
-        "-V",
-        "--version",
-        action="version",
-        help="Show version number and exit.",
-        version=f"[argparse.prog]{NAME}[/] version [i]{VERSION}[/]",
     )
 
     return parser.parse_args()
