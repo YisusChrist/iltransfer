@@ -9,6 +9,7 @@ except ImportError:  # for Python < 3.8
 
 __version__ = metadata.version(__package__ or __name__)
 __desc__ = metadata.metadata(__package__ or __name__)["Summary"]
+GITHUB: str = metadata.metadata(__package__ or __name__)["Home-page"]
 PACKAGE = metadata.metadata(__package__ or __name__)["Name"]
 
 CONFIG_PATH = get_user_path(PACKAGE, "config")

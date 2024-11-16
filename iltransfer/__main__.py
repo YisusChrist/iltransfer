@@ -11,12 +11,14 @@ TODO:
     * Add support for multiple source paths.
 """
 
+from argparse import Namespace
+from core_helpers.updates import check_updates
 from rich import print
 from rich.traceback import install
 
 from .cli import exit_session, get_parsed_args
 from .config import configure_paths
-from .consts import DEBUG, EXIT_FAILURE, EXIT_SUCCESS, PROFILE
+from .consts import DEBUG, EXIT_FAILURE, EXIT_SUCCESS, GITHUB, PROFILE, VERSION
 from .file_processing import find_and_move_folders
 from .logs import logger
 
@@ -27,8 +29,9 @@ def main() -> None:
     """
     # Enable rich error formatting in debug mode
     install(show_locals=DEBUG)
+    check_updates(GITHUB, VERSION)
 
-    args = get_parsed_args()
+    args: Namespace = get_parsed_args()
 
     logger.info("Start of session")
 
