@@ -7,10 +7,16 @@ from pathlib import Path
 from tkinter import filedialog
 from typing import Tuple
 
+from core_helpers.utils import exit_session
 from rich import print
 
-from .cli import exit_session
-from .consts import CONFIG_FILE, DEFAULT_DEST_PATH, DEFAULT_SRC_PATH, EXIT_FAILURE
+from .consts import (
+    CONFIG_FILE,
+    DEFAULT_DEST_PATH,
+    DEFAULT_SRC_PATH,
+    EXIT_FAILURE,
+    LOG_PATH,
+)
 from .logs import logger
 
 
@@ -127,7 +133,7 @@ def configure_paths(args: Namespace) -> Tuple[Path, Path]:
 
     if not config_file.is_file():
         logger.error("Configuration file '%s' does not exist", config_file)
-        exit_session(EXIT_FAILURE)
+        exit_session(EXIT_FAILURE, LOG_PATH)
 
     # Read both configuration file and command-line arguments
     config = ConfigParser()

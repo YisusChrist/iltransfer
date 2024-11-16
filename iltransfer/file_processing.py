@@ -4,7 +4,7 @@ import shutil
 from pathlib import Path
 
 from rich import print
-from tqdm import tqdm
+from tqdm import tqdm  # type: ignore
 
 from .consts import DEBUG
 from .logs import logger
