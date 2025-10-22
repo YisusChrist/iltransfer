@@ -7,6 +7,7 @@ from pathlib import Path
 from tkinter import filedialog
 from typing import Tuple
 
+from core_helpers.logs import logger
 from core_helpers.utils import exit_session
 from rich import print
 
@@ -17,7 +18,6 @@ from .consts import (
     EXIT_FAILURE,
     LOG_PATH,
 )
-from .logs import logger
 
 
 def get_path_from_dialog(title: str) -> Path:

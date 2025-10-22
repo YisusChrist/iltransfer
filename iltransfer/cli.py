@@ -4,7 +4,9 @@ from argparse import Namespace
 
 from core_helpers.cli import ArgparseColorThemes, setup_parser
 
-from .consts import DESC, PACKAGE, VERSION
+from .consts import PACKAGE
+from .consts import __desc__ as DESC
+from .consts import __version__ as VERSION
 
 
 def get_parsed_args() -> Namespace:

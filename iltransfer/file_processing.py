@@ -2,20 +2,16 @@
 
 import shutil
 from pathlib import Path
+from time import sleep
 
+from core_helpers.logs import logger
 from rich import print
 from tqdm import tqdm  # type: ignore
 
-from .consts import DEBUG
-from .logs import logger
-
-if DEBUG:
-    from time import sleep
-
-    SLEEP_TIME = 0.5
+from .consts import SLEEP_TIME
 
 
-def find_and_move_folders(src_path: Path, dest_path: Path) -> None:
+def find_and_move_folders(src_path: Path, dest_path: Path, debug: bool) -> None:
     """
     Recursively searches for folders in the source path and moves them to the
     destination path.
@@ -32,7 +28,7 @@ def find_and_move_folders(src_path: Path, dest_path: Path) -> None:
         logger.info("Found %d files in %s", length, src_path)
 
         for file in tqdm(iterable=file_list, total=length):
-            process_folder(file, dest_path)
+            process_folder(file, dest_path, debug)
 
     except KeyboardInterrupt:
         print("\nCaught KeyboardInterrupt, terminating workers")
@@ -67,7 +63,7 @@ def move_folder(src: str | Path, dest: str | Path):
             src_path.rmdir()
 
 
-def process_folder(folder: Path, dest_path: Path) -> None:
+def process_folder(folder: Path, dest_path: Path, debug: bool = False) -> None:
     """
     Processes a folder, checks if it should be skipped, and moves it to the
     destination path if necessary.
@@ -85,7 +81,7 @@ def process_folder(folder: Path, dest_path: Path) -> None:
     """
     logger.debug("Processing folder %s", folder)
 
-    if DEBUG:
+    if debug:
         sleep(SLEEP_TIME)
 
     if not folder.is_dir():
