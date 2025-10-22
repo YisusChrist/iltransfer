@@ -14,13 +14,13 @@ rich = ">=13.5.2"
 tqdm = ">=4.66.1"
 
 [tool.poetry.group.dev.dependencies]
-mypy = "^1.5.1"
-pylint = "^2.17.7"
-sphinx = "^7.2.6"
-bandit = "^1.7.5"
-pdoc = "^14.5.1"
-monkeytype = "^23.3.0"
-commitizen = "^3.10.0"
+mypy = ">=1.5.1"
+pylint = ">=2.17.7"
+sphinx = ">=7.2.6"
+bandit = ">=1.7.5"
+pdoc = ">=14.5.1"
+monkeytype = ">=23.3.0"
+commitizen = ">=3.10.0"
 
 [tool.poetry.scripts]
 iltransfer = "iltransfer.__main__:main"
