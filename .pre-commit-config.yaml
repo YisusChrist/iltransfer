@@ -30,7 +30,7 @@ repos:
     - hooks:
           - id: black
       repo: https://github.com/psf/black
-      rev: 25.9.0
+      rev: 25.11.0
     - hooks:
           - args:
                 - --profile
@@ -46,4 +46,4 @@ repos:
             stages:
                 - Nonepre-pushNone
       repo: https://github.com/commitizen-tools/commitizen
-      rev: v4.9.1
+      rev: v4.10.0
